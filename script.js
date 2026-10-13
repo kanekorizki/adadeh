@@ -8,6 +8,8 @@ const scene3 = document.querySelector("#scene3");
 const envelopeButton = document.querySelector("#envelopeButton");
 const envelopeMessage = document.querySelector("#envelopeMessage");
 const scene4 = document.querySelector("#scene4");
+const birthdayLetter = document.querySelector("#birthdayLetter");
+
 
 
 
@@ -43,7 +45,7 @@ for (let i = 0; i < 70; i++) {
 
 // Interaksi tombol pembuka
 beginButton.addEventListener("click", () => {
-    alert("Our story begins here, our big bro ✦");
+    
 });
 
 let isTransitioning = false;
@@ -111,7 +113,7 @@ goToBirthdayButton.addEventListener("click", () => {
 
 showLetterButton.addEventListener("click", () => {
     // Untuk tahap ini, tombol menampilkan pesan lanjutan.
-    showLetterButton.textContent = "Doa terbaik selalu menyertaimu, hari ini dan seterusnya.Cheers to another year of you! May life bring you beautiful moments, wonderful memories, and countless reasons to keep moving forward. Keep it up, our big bro. The best is yet to come.✨";
+    showLetterButton.textContent = "Your words are on their way ✨";
     showLetterButton.disabled = true;
 });
 
@@ -207,6 +209,17 @@ function startBirthdayAnimation() {
     });
 }
 
+
 showLetterButton.addEventListener("click", () => {
+    birthdayLetter.hidden = false;
+    showLetterButton.hidden = true;
+
+    // Perayaan dimulai kembali saat surat dibuka
     startBirthdayAnimation();
+
+    // Gulir perlahan ke pesan jika dibutuhkan
+    birthdayLetter.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 });
