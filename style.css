@@ -520,3 +520,103 @@ button:focus-visible {
         animation: none;
     }
 }
+
+
+/* Surat ulang tahun */
+.birthday-letter {
+    max-width: 440px;
+    margin: 28px auto 0;
+    padding: 24px 20px;
+    border-top: 1px solid #7775ad;
+    animation: letterReveal 1.2s ease both;
+}
+
+.birthday-letter[hidden] {
+    display: none;
+}
+
+.letter-opening {
+    color: #aab5e8;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.letter-message {
+    color: #f3f0ff;
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.letter-english {
+    margin-top: 24px;
+    color: #c1b7ff;
+    font-size: 21px;
+    font-style: italic;
+}
+
+.letter-closing {
+    color: #b5b8cc;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-top: 18px;
+}
+
+@keyframes letterReveal {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .birthday-letter {
+        animation: none;
+    }
+}
+
+.stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 8px #b9caff;
+    opacity: 0.3;
+
+    animation: twinkle var(--duration) ease-in-out
+        var(--delay) infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.2;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 0.95;
+        transform: scale(1.4);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
