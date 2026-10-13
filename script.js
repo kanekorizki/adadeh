@@ -111,7 +111,7 @@ goToBirthdayButton.addEventListener("click", () => {
 
 showLetterButton.addEventListener("click", () => {
     // Untuk tahap ini, tombol menampilkan pesan lanjutan.
-    showLetterButton.textContent = "Your words are on their way ✨";
+    showLetterButton.textContent = "Doa terbaik selalu menyertaimu, hari ini dan seterusnya.Cheers to another year of you! May life bring you beautiful moments, wonderful memories, and countless reasons to keep moving forward. Keep it up, our big bro. The best is yet to come.✨";
     showLetterButton.disabled = true;
 });
 
