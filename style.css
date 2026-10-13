@@ -1,0 +1,522 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    background: #080b18;
+    color: #f3f0ff;
+}
+
+.scene {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: 32px 20px;
+    background:
+        radial-gradient(
+            ellipse at 50% 45%,
+            #1a2040 0%,
+            #0c1023 48%,
+            #050711 100%
+        );
+}
+
+.intro {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+    animation: appear 1.5s ease both;
+}
+
+.eyebrow {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #aab5e8;
+}
+
+h1 {
+    font-size: clamp(38px, 8vw, 68px);
+    font-weight: normal;
+    line-height: 1.15;
+    margin: 28px 0;
+}
+
+h1 span {
+    color: #c1b7ff;
+    font-style: italic;
+}
+
+.description {
+    max-width: 380px;
+    margin: 0 auto;
+    color: #b5b8cc;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+button {
+    margin-top: 38px;
+    padding: 15px 24px;
+    border: 1px solid #7775ad;
+    border-radius: 30px;
+    background: #171a32;
+    color: #f3f0ff;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+button:hover {
+    background: #292747;
+    border-color: #c1b7ff;
+    transform: translateY(-3px);
+}
+
+button:focus-visible {
+    outline: 2px solid #c1b7ff;
+    outline-offset: 5px;
+}
+
+.footer {
+    margin-top: 55px;
+    color: #777d9d;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Hanya tampilkan adegan yang aktif */
+.scene:not(.active) {
+    display: none;
+}
+
+/* Bintang transisi di tengah layar */
+.zoom-star {
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+
+    background: #ffffff;
+    box-shadow:
+        0 0 15px 5px #aebdff,
+        0 0 45px 15px #747fff;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+/* Mulai transisi saat tombol diklik */
+#opening.zooming .zoom-star {
+    animation: zoomToStar 900ms ease-in forwards;
+}
+
+#opening.zooming .intro {
+    animation: disappear 450ms ease forwards;
+}
+
+#opening.zooming .stars {
+    animation: disappear 650ms ease forwards;
+}
+
+/* Bintang seolah mendekati kamera */
+@keyframes zoomToStar {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(100);
+    }
+}
+
+@keyframes disappear {
+    to {
+        opacity: 0;
+    }
+}
+
+/* Adegan baru muncul dengan lembut */
+#scene2.active {
+    animation: sceneReveal 900ms ease both;
+}
+
+@keyframes sceneReveal {
+    from {
+        opacity: 0;
+        transform: scale(1.04);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Bintang interaktif pada Scene 02 */
+.target-star {
+    display: block;
+    margin: 28px auto 0;
+
+    width: 72px;
+    height: 72px;
+    padding: 0;
+    border: 1px solid #7775ad;
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        #42446e 0%,
+        #171a32 70%
+    );
+
+    color: #ffffff;
+    font-size: 35px;
+
+    box-shadow: 0 0 25px #5c63a8;
+    animation: starPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes starPulse {
+    from {
+        box-shadow: 0 0 12px #5c63a8;
+        transform: scale(0.95);
+    }
+
+    to {
+        box-shadow: 0 0 32px #8f96ff;
+        transform: scale(1.05);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #opening.zooming .zoom-star,
+    #opening.zooming .intro,
+    #opening.zooming .stars,
+    #scene2.active {
+        animation-duration: 0.01ms !important;
+    }
+
+    .target-star {
+        animation: none;
+    }
+}
+/* Scene 03: amplop */
+.envelope {
+    display: grid;
+    place-items: center;
+    width: 100px;
+    height: 76px;
+    margin: 30px auto 0;
+    padding: 0;
+    border: 1px solid #9995d5;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #303052, #171a32);
+    color: #e4ddff;
+    font-size: 48px;
+    box-shadow: 0 0 24px #747fff55;
+    animation: envelopeGlow 2s ease-in-out infinite alternate;
+}
+
+.envelope:hover {
+    transform: translateY(-4px) scale(1.05);
+}
+
+.envelope-message {
+    min-height: 24px;
+    margin-top: 24px;
+    color: #b5b8cc;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+@keyframes envelopeGlow {
+    from {
+        box-shadow: 0 0 12px #747fff33;
+    }
+    to {
+        box-shadow: 0 0 30px #a5a0ff88;
+    }
+}
+
+.continue-button {
+    margin-top: 24px;
+}
+
+.continue-button[hidden] {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .envelope {
+        animation: none;
+    }
+}
+
+#scene3.active {
+    animation: sceneReveal 900ms ease both;
+}
+
+.star-found {
+    color: #fff5b8;
+    box-shadow: 0 0 35px #c1b7ff;
+}
+
+.envelope.opened {
+    background: linear-gradient(145deg, #48416f, #25213f);
+    border-color: #c1b7ff;
+}
+/* ===== SCENE 04: CINEMATIC BIRTHDAY ===== */
+
+#scene4 {
+    background:
+        radial-gradient(ellipse at 50% 70%, #33254b 0%, transparent 48%),
+        radial-gradient(ellipse at 50% 40%, #1a2040 0%, #080b18 75%);
+}
+
+#scene4.active {
+    animation: birthdayReveal 1.4s ease both;
+}
+
+.birthday-content {
+    max-width: 680px;
+    padding: 24px 0;
+}
+
+.birthday-wish {
+    animation: wishReveal 1.5s ease both;
+    animation-delay: 0.6s;
+}
+
+.cake-caption {
+    color: #b5b8cc;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-top: 22px;
+    animation: wishReveal 1.5s ease both;
+    animation-delay: 1s;
+}
+
+/* Kue ulang tahun */
+.birthday-cake {
+    position: relative;
+    width: 180px;
+    height: 145px;
+    margin: 38px auto 0;
+    animation: cakeReveal 1.2s cubic-bezier(.2,.8,.2,1) both;
+    animation-delay: 0.4s;
+}
+
+.cake-layer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid #d7b8ed;
+    background: linear-gradient(180deg, #d8b4e8, #8d6ab0);
+    box-shadow: 0 0 20px #bb8cff22;
+}
+
+.cake-layer-bottom {
+    bottom: 17px;
+    width: 160px;
+    height: 42px;
+    border-radius: 8px 8px 12px 12px;
+}
+
+.cake-layer-middle {
+    bottom: 54px;
+    width: 132px;
+    height: 34px;
+    border-radius: 8px 8px 4px 4px;
+    background: linear-gradient(180deg, #f1d5ed, #b88bcf);
+}
+
+.cake-top {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: 80px;
+    transform: translateX(-50%);
+    width: 132px;
+    height: 16px;
+    border-radius: 50%;
+    background: #f6e4f6;
+    border: 1px solid #fff0ff;
+}
+
+.cake-plate {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 176px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #c8c9e8, #777da9);
+    box-shadow: 0 0 24px #a5a0ff33;
+}
+
+/* Lilin */
+.candle {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    bottom: 94px;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 30px;
+    border-radius: 3px;
+    background: repeating-linear-gradient(
+        135deg,
+        #fff0c5 0 5px,
+        #c5a4ef 5px 10px
+    );
+}
+
+.flame {
+    position: absolute;
+    left: 50%;
+    top: -17px;
+    width: 12px;
+    height: 17px;
+    transform: translateX(-50%);
+    border-radius: 50% 50% 45% 45%;
+    background: #fff4ba;
+    box-shadow: 0 0 12px #ffda79, 0 0 30px #ffbb55;
+    animation: flameFlicker .8s ease-in-out infinite alternate;
+}
+
+@keyframes flameFlicker {
+    from { transform: translateX(-50%) scale(1) rotate(-4deg); }
+    to { transform: translateX(-50%) scale(.85, 1.12) rotate(4deg); }
+}
+
+/* Confetti dan kilauan */
+#birthdayEffects {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.confetti {
+    position: absolute;
+    top: -20px;
+    width: 7px;
+    height: 12px;
+    border-radius: 2px;
+    animation: confettiFall var(--fall-time, 4s) linear forwards;
+    animation-delay: var(--fall-delay, 0s);
+}
+
+.sparkle {
+    position: absolute;
+    color: #fff0b8;
+    font-size: var(--sparkle-size, 12px);
+    text-shadow: 0 0 12px #ffe5a0;
+    animation: sparkleTwinkle var(--twinkle-time, 2s) ease-in-out infinite alternate;
+    animation-delay: var(--twinkle-delay, 0s);
+}
+
+@keyframes confettiFall {
+    0% { transform: translate3d(0, -10px, 0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translate3d(var(--drift, 50px), 110vh, 0) rotate(720deg); opacity: 0; }
+}
+
+@keyframes sparkleTwinkle {
+    from { opacity: .15; transform: scale(.6) rotate(0deg); }
+    to { opacity: 1; transform: scale(1.3) rotate(35deg); }
+}
+
+/* Kembang api */
+.firework {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    color: #ffe6a6;
+    background: currentColor;
+    box-shadow:
+        0 -25px 0 -1px currentColor,
+        18px -18px 0 -1px currentColor,
+        25px 0 0 -1px currentColor,
+        18px 18px 0 -1px currentColor,
+        0 25px 0 -1px currentColor,
+        -18px 18px 0 -1px currentColor,
+        -25px 0 0 -1px currentColor,
+        -18px -18px 0 -1px currentColor;
+    animation: fireworkBurst 1.2s ease-out forwards;
+}
+
+@keyframes fireworkBurst {
+    0% { opacity: 0; transform: scale(.1); }
+    20% { opacity: 1; }
+    100% { opacity: 0; transform: scale(1.7); }
+}
+
+@keyframes birthdayReveal {
+    from { opacity: 0; transform: scale(1.035); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cakeReveal {
+    from { opacity: 0; transform: translateY(24px) scale(.85); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes wishReveal {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #scene4.active,
+    .birthday-wish,
+    .birthday-cake,
+    .cake-caption,
+    .flame {
+        animation: none;
+    }
+}

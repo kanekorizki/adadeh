@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Little Universe, Just for You</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<main class="scene active" id="opening">
+    <div class="stars" aria-hidden="true"></div>
+
+    <!-- Bintang yang membesar saat transisi -->
+    <div class="zoom-star" id="zoomStar" aria-hidden="true"></div>
+
+    <section class="intro">
+        <p class="eyebrow">A LITTLE SOMETHING FOR YOU</p>
+
+        <h1>
+            A Little Universe,<br>
+            <span>Just for You.</span>
+        </h1>
+
+        <p class="description">
+            Somewhere beneath this endless sky,
+            a little story awaits you.
+        </p>
+
+        <button id="beginButton" type="button">
+            Begin our story <span aria-hidden="true">→</span>
+        </button>
+
+        <p class="footer">made with love, just for you.</p>
+    </section>
+</main>
+
+<!-- Scene 02: A Little Light -->
+<main class="scene" id="scene2">
+    <div class="stars" aria-hidden="true"></div>
+
+    <section class="intro">
+        <p class="eyebrow">SCENE II — A LITTLE LIGHT</p>
+
+        <h1>
+            Find Your<br>
+            <span>Little Star.</span>
+        </h1>
+
+        <p class="description">
+            Di antara begitu banyak cahaya,
+            ada satu yang menunggumu.
+            Coba sentuh bintang di bawah ini.
+        </p>
+
+        <button
+            class="target-star"
+            id="targetStar"
+            type="button"
+            aria-label="Bintang yang bercahaya"
+        >
+            ✦
+        </button>
+        <button id="continueButton" class="continue-button" type="button" hidden>
+        There's something for you →
+        
+        </button>
+
+        <p class="footer">a little light, just for you.</p>
+    </section>
+</main>
+
+<!-- Scene 03: Something for You -->
+<main class="scene" id="scene3">
+    <div class="stars" aria-hidden="true"></div>
+
+    <section class="intro">
+        <p class="eyebrow">SCENE III — SOMETHING FOR YOU</p>
+
+        <h1>Something<br><span>For You.</span></h1>
+
+        <p class="description">
+            There are things that are easier to write than to say.
+            <br><br>
+            Ada beberapa hal yang mungkin lebih mudah kutuliskan
+            daripada kuucapkan langsung.
+        </p>
+
+        <button id="envelopeButton" class="envelope" type="button"
+                aria-label="Buka amplop">
+            <span aria-hidden="true">✉</span>
+        </button>
+
+        <p id="envelopeMessage" class="envelope-message" aria-live="polite">
+            A little something, waiting to be opened.
+        </p>
+        <button id="goToBirthdayButton" type="button" hidden>
+            A little more, please →
+        </button>
+    </section>
+
+</main>
+
+<!-- Scene 04: Words From Me -->
+<main class="scene" id="scene4">
+    <div class="stars" aria-hidden="true"></div>
+
+    <!-- Efek perayaan dibuat oleh JavaScript -->
+    <div id="birthdayEffects" aria-hidden="true"></div>
+
+    <section class="intro birthday-content">
+        <p class="eyebrow">SCENE IV — WORDS FROM ME</p>
+
+        <h1>Happy Birthday,<br><span>Our Big Bro.</span></h1>
+
+        <p class="description birthday-wish">
+            May this year bring you more reasons to smile,
+            more beautiful memories to keep,
+            and the courage to chase every dream you hold.
+        </p>
+
+        <!-- Kue ulang tahun berbasis CSS -->
+        <div class="birthday-cake" role="img" aria-label="Kue ulang tahun dengan lilin menyala">
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+            <div class="cake-top"></div>
+            <div class="cake-layer cake-layer-middle"></div>
+            <div class="cake-layer cake-layer-bottom"></div>
+            <div class="cake-plate"></div>
+        </div>
+
+        <p class="cake-caption">A little celebration, just for you.</p>
+
+        <button id="showLetterButton" type="button">
+            Read my words →
+        </button>
+    </section>
+</main>
+</html>
+
